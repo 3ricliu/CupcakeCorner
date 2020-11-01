@@ -11,6 +11,8 @@
 		07BF19FF254E50C0008C8C80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF19FE254E50C0008C8C80 /* ContentView.swift */; };
 		07BF1A01254E50C2008C8C80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BF1A00254E50C2008C8C80 /* Assets.xcassets */; };
 		07BF1A04254E50C2008C8C80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BF1A03254E50C2008C8C80 /* Preview Assets.xcassets */; };
+		07BF1A11254F4520008C8C80 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF1A10254F4520008C8C80 /* Order.swift */; };
+		07BF1A14254F6A18008C8C80 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF1A13254F6A18008C8C80 /* AddressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		07BF1A00254E50C2008C8C80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07BF1A03254E50C2008C8C80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		07BF1A05254E50C2008C8C80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07BF1A10254F4520008C8C80 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		07BF1A13254F6A18008C8C80 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				07BF19FC254E50C0008C8C80 /* CupcakeCornerApp.swift */,
 				07BF19FE254E50C0008C8C80 /* ContentView.swift */,
+				07BF1A10254F4520008C8C80 /* Order.swift */,
+				07BF1A13254F6A18008C8C80 /* AddressView.swift */,
 				07BF1A00254E50C2008C8C80 /* Assets.xcassets */,
 				07BF1A05254E50C2008C8C80 /* Info.plist */,
 				07BF1A02254E50C2008C8C80 /* Preview Content */,
@@ -138,6 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BF1A11254F4520008C8C80 /* Order.swift in Sources */,
+				07BF1A14254F6A18008C8C80 /* AddressView.swift in Sources */,
 				07BF19FF254E50C0008C8C80 /* ContentView.swift in Sources */,
 				07BF19FD254E50C0008C8C80 /* CupcakeCornerApp.swift in Sources */,
 			);

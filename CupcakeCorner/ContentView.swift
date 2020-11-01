@@ -7,75 +7,49 @@
 
 import SwiftUI
 
-class User: ObservableObject, Codable {
-  enum CodingKeys: CodingKey {
-    case name
-  }
-  
-  @Published var name = "Eric Liu"
-  
-  required init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    name = try container.decode(String.self, forKey: .name)
-  }
-  
-  func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(name, forKey: .name)
-  }
-}
-
-
-struct Response: Codable {
-  var results: [Result]
-}
-
-struct Result: Codable {
-  var trackId: Int
-  var trackName: String
-  var collectionName: String
-}
-
 struct ContentView: View {
-  @State var results = [Result]()
+  @ObservedObject var order = Order()
   
   var body: some View {
-    List(results, id: \.trackId) { item in
-      VStack(alignment: .leading) {
-        Text(item.trackName)
-          .font(.headline)
+    NavigationView {
+      Form {
+        Section {
+          Picker("Select your cake type", selection: $order.type) {
+            ForEach(0..<Order.types.count) {
+              Text(Order.types[$0])
+            }
+          }
+        }
         
-        Text(item.collectionName)
-      }
-    }
-    .onAppear(perform: loadData)
-  }
-  
-  func loadData() {
-    guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
-      print("Invalid URL")
-      return
-    }
-    
-    let request = URLRequest(url: url)
-    
-    URLSession.shared.dataTask(with: request) { data, response, error in
-      if let data = data {
-        if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-          DispatchQueue.main.async {
-            self.results = decodedResponse.results
+        Stepper(value: $order.quantity, in: 3...20) {
+          Text("Number of cakes: \(order.quantity)")
+        }
+        
+        Section {
+          Toggle(isOn: $order.specialRequestEnabled.animation()) {
+            Text("Any special requests?")
           }
           
-          return
+          if order.specialRequestEnabled {
+            Toggle(isOn: $order.extraFrosting) {
+              Text("Add Extra Frosting")
+            }
+            Toggle(isOn: $order.addSprinkles) {
+              Text("Add Sprinkles")
+            }
+          }
+        }
+        
+        Section {
+          NavigationLink(destination: AddressView(order: order)) {
+            Text("Delivery details")
+          }
         }
       }
-      
-      print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-    }.resume()
+      .navigationBarTitle("Cupcake Corner")
+    }
   }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
